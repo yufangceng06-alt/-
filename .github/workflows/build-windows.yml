@@ -24,6 +24,15 @@ jobs:
       - name: Install dependencies
         run: python -m pip install --upgrade pip pyinstaller && python -m pip install -r requirements.txt
 
+      - name: Restore project folders
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force assets
+          New-Item -ItemType Directory -Force pet_app
+          Copy-Item sprite_sheet.png assets/sprite_sheet.png -Force
+          Copy-Item app.py pet_app/app.py -Force
+          Copy-Item __init__.py pet_app/__init__.py -Force
+
       - name: Build portable Windows app
         run: python -m PyInstaller --noconfirm --clean PinkHelmetPet.spec
 
