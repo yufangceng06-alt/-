@@ -1,0 +1,2 @@
+"""Pink Helmet desktop pet."""
+
